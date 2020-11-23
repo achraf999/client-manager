@@ -1,0 +1,62 @@
+
+<div class="row mt-3">
+    <div class="col-md-6">
+      <h2>List of clients</h2>
+    </div>
+    <div class="col-md-6 text-right">
+      <a routerLink="/clients/add" class="btn btn-success"><i class="fa fa-plus"></i></a>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-8">
+      <input (keyup)="searchClient()" name="search" [(ngModel)]="search" type="text" placeholder="Search..." class="form-control">
+    </div>
+    <div class="col-md-4 text-right">
+      <h4><span class="badge badge-success">Total: {{ total }}</span>  </h4>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Full name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Balance</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of searchClients" (dblclick)="removeClient(client.id)">
+            <td scope="row">
+              
+              <button class="btn btn-sm mr-3" [ngClass]="{
+                'btn-success': client?.active,
+                'btn-danger': !client?.active
+              }"
+              (click)="toggleActive(client)"
+              >
+                <i class="fa fa-power-off"></i>
+              </button>
+              
+              {{ client.lastName | titlecase }} {{ client.firstName | uppercase }}
+              <small>{{ client?.city }}</small>
+            </td>
+            <td>{{ client.phone }}</td>
+            <td>{{ client.email }}</td>
+            <td>{{ client.balance }}</td>
+            <td class="test-right">
+              <a [routerLink]="['/clients/edit', client.id]" class="btn btn-dark btn-sm mr-1"><i class="fa fa-pencil"></i></a>
+              <a [routerLink]="['/clients/show', client.id]" class="btn btn-success btn-sm mr-1"><i class="fa fa-eye"></i></a>
+              <button (click)="removeClient(client.id)" class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button>
+            </td>
+          </tr>
+         
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

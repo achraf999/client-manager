@@ -1,0 +1,25 @@
+
+<div class="row mt-3">
+  <div class="col-md-6">
+    <h2>{{ myClient.lastName }} {{ myClient.firstName }}</h2> 
+  </div>
+  <div class="col-md-6 text-right">
+    <a routerLink="/clients" class="btn btn-link">
+      <i class="fa fa-arrow-left"></i> Back to list
+    </a>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-8">
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Phone: </strong>{{ myClient.phone }}</li>
+      <li class="list-group-item"><strong>Email: </strong>{{ myClient.email }}</li>
+      <li class="list-group-item"><strong>Balance: </strong>{{ myClient.balance | currency: 'USD'}}</li>     
+    </ul>
+  </div>
+  <div class="col-md-4 text-right">
+    <a [routerLink]="['/clients/edit', myClient.id]" class="mr-2 btn btn-dark btn-sm"><i class="fa fa-pencil"></i></a>
+    <button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button>
+  </div>
+</div>

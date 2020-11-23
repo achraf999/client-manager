@@ -1,0 +1,59 @@
+
+<div class="row my-3">
+  <div class="col-md-6">
+    <h2>Add new Client</h2>
+  </div>
+  <div class="col-md-6 text-right">
+    <a routerLink="/">
+      <i class="fa fa-arrow-left"></i> Back to list 
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 mx-auto">
+<form></form>
+    <div class="form-group">
+      <label for="FirstName">FirstName</label>
+      <input [(ngModel)]="myClient.firstName" name="firstName" id="FirstName" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="LastName">LastName</label>
+        <input [(ngModel)]="myClient.lastName" name="lastName" id="LastName" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="Phone">Phone</label>
+        <input [(ngModel)]="myClient.phone" name="phone" id="Phone" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="email">email</label>
+      <input [ngClass]="{'is-invalid': email.touched && email.invalid}" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" ngModel #email="ngModel" name="email" id="email" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="balance">balance</label>
+      <input [ngClass]="{'is-invalid': balance.touched && balance.invalid}" ngModel #balance="ngModel" required  name="balance" id="balance" type="number" class="form-control">
+    </div>
+    <select [(ngModel)]="myClient.contact" name="contact" class="form-control">
+      <option value="">Contact methods</option>
+      <option [ngValue]="contact" *ngFor="let contact of contacts">
+        {{ contact.label }}
+      </option>
+    </select> 
+
+    <div class="form-check my-2">
+      <label class="form-check-label">
+        <input [(ngModel)]="myClient.subscribe" type="checkbox" class="form-check-input" name="subscribe" id="subscribe" value="checkedValue">
+        Subscribe
+      </label>
+    </div>
+    
+    <button class="btn btn-primary btn-block" (click)="createClient()">
+      <span *ngIf="reload"> <i class="fa fa-spinner fa-spin"></i>   </span>
+      <span *ngIf="!reload"><i class="fa fa-send"></i> New Client</span>
+    </button>
+  </div>
+</div>
+
